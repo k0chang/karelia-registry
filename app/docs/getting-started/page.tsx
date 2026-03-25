@@ -65,11 +65,15 @@ CF_ACCESS_CLIENT_SECRET=your_client_secret`}</CodeBlock>
         <p className="text-muted-foreground">
           Use the shadcn CLI to install any registry item:
         </p>
-        <CodeBlock title="Terminal">{`# Using namespace
-npx shadcn@latest add @karelia/button
-
-# Using direct URL
-npx shadcn@latest add https://karelia-registry.ehlersiana.workers.dev/r/button.json`}</CodeBlock>
+        <CodeBlock title="Terminal">{`npx shadcn@latest add @karelia/button`}</CodeBlock>
+        <div className="rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+          <p className="font-medium text-foreground">Important</p>
+          <p className="mt-1">
+            You must use the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">@karelia/</code> namespace
+            prefix. Direct URL installation does not work because the shadcn CLI
+            does not send authentication headers for raw URLs.
+          </p>
+        </div>
       </section>
 
       <section className="space-y-4">

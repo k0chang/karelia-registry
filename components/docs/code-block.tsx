@@ -20,17 +20,17 @@ export function CodeBlock({
 }
 
 export function InstallCommand({ name }: { name: string }) {
-  const url = `https://karelia-registry.ehlersiana.workers.dev/r/${name}.json`
   return (
     <div className="space-y-3">
       <h3 className="text-lg font-semibold">Installation</h3>
-      <CodeBlock title="Terminal">{`npx shadcn@latest add ${url}`}</CodeBlock>
+      <CodeBlock title="Terminal">{`npx shadcn@latest add @karelia/${name}`}</CodeBlock>
       <p className="text-sm text-muted-foreground">
-        Requires Cloudflare Access credentials. See{" "}
+        Requires the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">@karelia</code> namespace
+        and Cloudflare Access credentials. See{" "}
         <a href="/docs/getting-started" className="text-primary underline underline-offset-4">
           Getting Started
         </a>{" "}
-        for authentication setup.
+        for setup.
       </p>
     </div>
   )

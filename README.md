@@ -49,6 +49,8 @@ Add the Karelia namespace to your `components.json`:
 
 ### 3. Install Components
 
+> **Important:** You must use the `@karelia/` namespace prefix. Direct URL installation (`shadcn add https://...`) does not work because the CLI does not send authentication headers for raw URLs.
+
 ```bash
 npx shadcn@latest add @karelia/button
 npx shadcn@latest add @karelia/login-form
