@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Karelia Registry
 
-## Getting Started
+A [shadcn/ui](https://ui.shadcn.com) compatible component registry serving UI components, hooks, utilities, and a custom design system. Built with Next.js 16, deployed on Cloudflare Workers, and protected by Cloudflare Access.
 
-First, run the development server:
+**Live:** https://karelia-registry.ehlersiana.workers.dev
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Registry Items
+
+| Name | Type | Description |
+|------|------|-------------|
+| `button` | UI | Versatile button with multiple variants and sizes, built on @base-ui/react |
+| `input` | UI | Styled text input built on @base-ui/react |
+| `label` | UI | Accessible label for form controls |
+| `card` | UI | Card with header, content, and footer sections |
+| `date-utils` | Lib | Date utility functions using native Intl API |
+| `use-debounce` | Hook | Debounce a value by a specified delay |
+| `use-clipboard` | Hook | Copy text to clipboard with temporary state |
+| `login-form` | Block | Login form with email/password and social auth (GitHub, Google) |
+| `karelia-base` | Base | Nordic Brutalist design system with deep teal/cyan OKLCH palette |
+
+## Installation
+
+### 1. Configure Authentication
+
+The registry API (`/r/*`) is protected by Cloudflare Access. Add your service token credentials:
+
+```env
+CF_ACCESS_CLIENT_ID=your_client_id
+CF_ACCESS_CLIENT_SECRET=your_client_secret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Add the Registry
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Add the Karelia namespace to your `components.json`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```json
+{
+  "registries": {
+    "@karelia": {
+      "url": "https://karelia-registry.ehlersiana.workers.dev/r/{name}.json",
+      "headers": {
+        "CF-Access-Client-Id": "${CF_ACCESS_CLIENT_ID}",
+        "CF-Access-Client-Secret": "${CF_ACCESS_CLIENT_SECRET}"
+      }
+    }
+  }
+}
+```
 
-## Learn More
+### 3. Install Components
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx shadcn@latest add @karelia/button
+npx shadcn@latest add @karelia/login-form
+npx shadcn@latest add @karelia/use-debounce
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm install
+pnpm registry:build   # Build registry JSON to public/r/
+pnpm dev              # Start dev server
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm registry:build   # Rebuild registry
+pnpm run deploy       # Build & deploy to Cloudflare Workers
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, RSC)
+- **UI Primitives:** @base-ui/react, class-variance-authority
+- **Styling:** Tailwind CSS v4, OKLCH color space
+- **Registry:** shadcn CLI (`shadcn build`)
+- **Deployment:** Cloudflare Workers via @opennextjs/cloudflare
+- **Auth:** Cloudflare Access (Zero Trust)
+
+## License
+
+MIT
