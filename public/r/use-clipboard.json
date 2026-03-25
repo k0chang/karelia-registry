@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-clipboard",
+  "title": "useClipboard",
+  "description": "A React hook for copying text to the clipboard with a temporary 'copied' state indicator.",
+  "files": [
+    {
+      "path": "registry/new-york/use-clipboard/use-clipboard.ts",
+      "content": "\"use client\"\n\nimport { useCallback, useState } from \"react\"\n\n/**\n * Copy text to the clipboard with a temporary \"copied\" state.\n *\n * @example\n * ```tsx\n * const { copy, copied } = useClipboard({ timeout: 2000 })\n *\n * return (\n *   <button onClick={() => copy(\"Hello!\")}>\n *     {copied ? \"Copied!\" : \"Copy\"}\n *   </button>\n * )\n * ```\n */\nexport function useClipboard({ timeout = 2000 }: { timeout?: number } = {}) {\n  const [copied, setCopied] = useState(false)\n  const [error, setError] = useState<Error | null>(null)\n\n  const copy = useCallback(\n    async (text: string) => {\n      try {\n        await navigator.clipboard.writeText(text)\n        setCopied(true)\n        setError(null)\n\n        setTimeout(() => {\n          setCopied(false)\n        }, timeout)\n      } catch (err) {\n        setError(\n          err instanceof Error ? err : new Error(\"Failed to copy to clipboard\")\n        )\n        setCopied(false)\n      }\n    },\n    [timeout]\n  )\n\n  return { copy, copied, error }\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-utils",
+  "title": "Date Utils",
+  "description": "Date utility functions using native Intl API. Includes formatDate, toDate, isToday, daysBetween, formatRelative, and toISODateString.",
+  "files": [
+    {
+      "path": "registry/new-york/date-utils/date-utils.ts",
+      "content": "/**\n * Format a date using Intl.DateTimeFormat.\n */\nexport function formatDate(\n  date: Date | string | number,\n  options?: Intl.DateTimeFormatOptions,\n  locale: string = \"en-US\"\n): string {\n  const d = toDate(date)\n  return new Intl.DateTimeFormat(locale, {\n    year: \"numeric\",\n    month: \"short\",\n    day: \"numeric\",\n    ...options,\n  }).format(d)\n}\n\n/**\n * Parse a date string, number, or Date into a Date object.\n */\nexport function toDate(value: Date | string | number): Date {\n  if (value instanceof Date) return value\n  const d = new Date(value)\n  if (isNaN(d.getTime())) {\n    throw new Error(`Invalid date: ${value}`)\n  }\n  return d\n}\n\n/**\n * Check if a date is today.\n */\nexport function isToday(date: Date | string | number): boolean {\n  const d = toDate(date)\n  const now = new Date()\n  return (\n    d.getFullYear() === now.getFullYear() &&\n    d.getMonth() === now.getMonth() &&\n    d.getDate() === now.getDate()\n  )\n}\n\n/**\n * Calculate the number of days between two dates.\n */\nexport function daysBetween(\n  a: Date | string | number,\n  b: Date | string | number\n): number {\n  const dateA = toDate(a)\n  const dateB = toDate(b)\n  const diffMs = Math.abs(dateB.getTime() - dateA.getTime())\n  return Math.floor(diffMs / (1000 * 60 * 60 * 24))\n}\n\n/**\n * Format a date as a relative time string (e.g., \"2 days ago\", \"in 3 hours\").\n */\nexport function formatRelative(\n  date: Date | string | number,\n  locale: string = \"en-US\"\n): string {\n  const d = toDate(date)\n  const now = new Date()\n  const diffMs = d.getTime() - now.getTime()\n  const diffSec = Math.round(diffMs / 1000)\n  const diffMin = Math.round(diffSec / 60)\n  const diffHour = Math.round(diffMin / 60)\n  const diffDay = Math.round(diffHour / 24)\n\n  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: \"auto\" })\n\n  if (Math.abs(diffDay) >= 1) return rtf.format(diffDay, \"day\")\n  if (Math.abs(diffHour) >= 1) return rtf.format(diffHour, \"hour\")\n  if (Math.abs(diffMin) >= 1) return rtf.format(diffMin, \"minute\")\n  return rtf.format(diffSec, \"second\")\n}\n\n/**\n * Format a date as ISO date string (YYYY-MM-DD).\n */\nexport function toISODateString(date: Date | string | number): string {\n  const d = toDate(date)\n  return d.toISOString().split(\"T\")[0]\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

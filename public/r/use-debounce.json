@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-debounce",
+  "title": "useDebounce",
+  "description": "A React hook that debounces a value by a specified delay. Useful for search inputs and API calls.",
+  "files": [
+    {
+      "path": "registry/new-york/use-debounce/use-debounce.ts",
+      "content": "\"use client\"\n\nimport { useEffect, useState } from \"react\"\n\n/**\n * Debounce a value by a given delay in milliseconds.\n *\n * @example\n * ```tsx\n * const [query, setQuery] = useState(\"\")\n * const debouncedQuery = useDebounce(query, 300)\n *\n * useEffect(() => {\n *   // Runs only after 300ms of no changes\n *   search(debouncedQuery)\n * }, [debouncedQuery])\n * ```\n */\nexport function useDebounce<T>(value: T, delay: number = 500): T {\n  const [debouncedValue, setDebouncedValue] = useState<T>(value)\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setDebouncedValue(value)\n    }, delay)\n\n    return () => {\n      clearTimeout(timer)\n    }\n  }, [value, delay])\n\n  return debouncedValue\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}
