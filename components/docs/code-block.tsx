@@ -26,8 +26,7 @@ export function InstallCommand({ name }: { name: string }) {
       <h3 className="text-lg font-semibold">Installation</h3>
       <CodeBlock title="Terminal">{`npx shadcn@latest add ${url}`}</CodeBlock>
       <p className="text-sm text-muted-foreground">
-        Requires <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">REGISTRY_TOKEN</code> to
-        be configured. See{" "}
+        Requires Cloudflare Access credentials. See{" "}
         <a href="/docs/getting-started" className="text-primary underline underline-offset-4">
           Getting Started
         </a>{" "}

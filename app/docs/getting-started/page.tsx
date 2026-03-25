@@ -16,12 +16,18 @@ export default function GettingStartedPage() {
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">1. Configure Authentication</h2>
+        <h2 className="text-2xl font-semibold">1. Authentication</h2>
         <p className="text-muted-foreground">
-          The Karelia Registry uses Bearer token authentication. Add your token
-          to your environment:
+          The Karelia Registry is protected by Cloudflare Access. You will need
+          a valid service token to access the registry API. Contact the
+          registry administrator to obtain your credentials.
         </p>
-        <CodeBlock title=".env.local">{`REGISTRY_TOKEN=your_token_here`}</CodeBlock>
+        <p className="text-muted-foreground">
+          Once you have your service token, set the following environment
+          variables:
+        </p>
+        <CodeBlock title=".env.local">{`CF_ACCESS_CLIENT_ID=your_client_id
+CF_ACCESS_CLIENT_SECRET=your_client_secret`}</CodeBlock>
       </section>
 
       <section className="space-y-4">
@@ -38,7 +44,8 @@ export default function GettingStartedPage() {
     "@karelia": {
       "url": "https://karelia-registry.ehlersiana.workers.dev/r/{name}.json",
       "headers": {
-        "Authorization": "Bearer \${REGISTRY_TOKEN}"
+        "CF-Access-Client-Id": "\${CF_ACCESS_CLIENT_ID}",
+        "CF-Access-Client-Secret": "\${CF_ACCESS_CLIENT_SECRET}"
       }
     }
   }
