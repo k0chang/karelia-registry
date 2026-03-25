@@ -16,6 +16,7 @@ A [shadcn/ui](https://ui.shadcn.com) compatible component registry serving UI co
 | `use-debounce` | Hook | Debounce a value by a specified delay |
 | `use-clipboard` | Hook | Copy text to clipboard with temporary state |
 | `login-form` | Block | Login form with email/password and social auth (GitHub, Google) |
+| `karelia-prompt` | Prompt | AI coding assistant prompt with Karelia Registry usage guidelines |
 | `karelia-base` | Base | Nordic Brutalist design system with deep teal/cyan OKLCH palette |
 
 ## Installation

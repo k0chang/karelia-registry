@@ -50,6 +50,12 @@ const registryItems = [
     description: "Complete login form with social login buttons.",
   },
   {
+    name: "Karelia Prompt",
+    type: "Prompt",
+    href: "/docs/prompts/karelia-prompt",
+    description: "AI assistant prompt with registry usage guidelines.",
+  },
+  {
     name: "Karelia Base",
     type: "Base",
     href: "/docs/design-system",

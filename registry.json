@@ -112,6 +112,19 @@
       ]
     },
     {
+      "name": "karelia-prompt",
+      "type": "registry:file",
+      "title": "Karelia Prompt",
+      "description": "AI coding assistant prompt with Karelia Registry usage guidelines, component conventions, and installation instructions.",
+      "files": [
+        {
+          "path": "registry/new-york/karelia-prompt/karelia.md",
+          "type": "registry:file",
+          "target": "~/.claude/rules/karelia.md"
+        }
+      ]
+    },
+    {
       "name": "karelia-base",
       "type": "registry:base",
       "title": "Karelia Base",

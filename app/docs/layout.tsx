@@ -30,6 +30,10 @@ const nav = [
     items: [{ title: "Login Form", href: "/docs/blocks/login-form" }],
   },
   {
+    title: "Prompts",
+    items: [{ title: "Karelia Prompt", href: "/docs/prompts/karelia-prompt" }],
+  },
+  {
     title: "Design System",
     items: [{ title: "Karelia Base", href: "/docs/design-system" }],
   },

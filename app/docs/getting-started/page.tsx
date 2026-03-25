@@ -97,6 +97,7 @@ CF_ACCESS_CLIENT_SECRET=your_client_secret`}</CodeBlock>
                 ["use-debounce", "Hook", "Value debounce hook"],
                 ["use-clipboard", "Hook", "Clipboard copy hook"],
                 ["login-form", "Block", "Login form with social auth"],
+                ["karelia-prompt", "Prompt", "AI assistant usage guide"],
                 ["karelia-base", "Base", "Full design system"],
               ].map(([name, type, desc]) => (
                 <tr key={name} className="border-b border-border last:border-0">
