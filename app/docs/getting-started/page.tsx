@@ -1,7 +1,7 @@
-import type { Metadata } from "next"
-import { CodeBlock } from "@/components/docs/code-block"
+import type { Metadata } from "next";
+import { CodeBlock } from "@/components/docs/code-block";
 
-export const metadata: Metadata = { title: "Getting Started" }
+export const metadata: Metadata = { title: "Getting Started" };
 
 export default function GettingStartedPage() {
   return (
@@ -19,9 +19,17 @@ export default function GettingStartedPage() {
         <h2 className="text-2xl font-semibold">1. Authentication</h2>
         <p className="text-muted-foreground">
           The Karelia Registry is protected by Cloudflare Access. You will need
-          a valid service token to access the registry API. Contact the
-          registry administrator to obtain your credentials.
+          a valid service token to access the registry API. Contact the registry
+          administrator to obtain your credentials.
         </p>
+        <div className="rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+          <p className="font-medium text-foreground">Note for administrators</p>
+          <p className="mt-1">
+            The Cloudflare Access policy action must be set to{" "}
+            <strong>Service Auth</strong>. The Allow action requires
+            browser-based login, which does not work with CLI tools like shadcn.
+          </p>
+        </div>
         <p className="text-muted-foreground">
           Once you have your service token, set the following environment
           variables:
@@ -98,5 +106,5 @@ npx shadcn@latest add https://karelia-registry.ehlersiana.workers.dev/r/button.j
         </div>
       </section>
     </div>
-  )
+  );
 }
